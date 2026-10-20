@@ -9,6 +9,18 @@ const sql = neon(databaseUrl);
 
 let schemaReadyPromise = null;
 
+function getRows(result) {
+  if (Array.isArray(result)) {
+    return result;
+  }
+
+  if (result && Array.isArray(result.rows)) {
+    return result.rows;
+  }
+
+  return [];
+}
+
 async function ensureSchema() {
   if (!schemaReadyPromise) {
     schemaReadyPromise = sql`
@@ -35,7 +47,9 @@ async function upsertParticipant(id, name) {
     RETURNING name, discord_id AS id, signed_at AS "signedAt"
   `;
 
-  return result.rows[0] || null;
+  const rows = getRows(result);
+
+  return rows[0] || null;
 }
 
 async function getParticipantById(id) {
@@ -48,7 +62,9 @@ async function getParticipantById(id) {
     LIMIT 1
   `;
 
-  return result.rows[0] || null;
+  const rows = getRows(result);
+
+  return rows[0] || null;
 }
 
 async function listParticipants() {
@@ -60,7 +76,7 @@ async function listParticipants() {
     ORDER BY signed_at DESC
   `;
 
-  return result.rows;
+  return getRows(result);
 }
 
 module.exports = {
