@@ -269,6 +269,63 @@
         color: var(--strong);
       }
 
+      .archive-actions {
+        max-width: 760px;
+        margin-top: 16px;
+        padding: 22px 24px;
+        border: 1px solid var(--panel-border);
+        background: rgba(255,255,255,0.01);
+      }
+
+      .archive-actions .muted-note {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 0.82rem;
+        letter-spacing: 0.04em;
+      }
+
+      .secondary-button {
+        margin-top: 12px;
+        background: transparent;
+        color: var(--text);
+        border: 1px solid var(--panel-border);
+      }
+
+      .participants-db {
+        margin-top: 14px;
+        border: 1px solid var(--panel-border);
+        padding: 14px;
+        background: rgba(255,255,255,0.01);
+      }
+
+      .participants-db.hidden {
+        display: none;
+      }
+
+      .participants-db table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .participants-db th,
+      .participants-db td {
+        padding: 10px 8px;
+        border-bottom: 1px solid var(--panel-border);
+        text-align: left;
+        font-size: 0.9rem;
+      }
+
+      .participants-db th {
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 0.74rem;
+      }
+
+      .participants-db tbody tr:last-child td {
+        border-bottom: none;
+      }
+
       @media (max-width: 760px) {
         .app {
           width: min(92vw, 700px);
@@ -366,11 +423,33 @@
             </p>
             <p><strong>Конец брифинга</strong></p>
           </div>
+
+          <div class="archive-actions">
+            <button id="signContractButton" type="button" class="secondary-button">Подписать контракт с CATE</button>
+            <p id="contractState" class="muted-note" aria-live="polite">Контракт не подписан</p>
+
+            <button id="openDbButton" type="button" class="secondary-button" disabled>Открыть БД участников</button>
+            <p id="dbAccessState" class="muted-note" aria-live="polite">Доступ к БД ограничен</p>
+
+            <div id="participantsDbPanel" class="participants-db hidden" aria-live="polite">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Имя</th>
+                    <th>Discord ID</th>
+                    <th>Контракт подписан</th>
+                  </tr>
+                </thead>
+                <tbody id="participantsDbBody"></tbody>
+              </table>
+              <p id="participantsDbEmpty" class="muted-note">В БД пока нет участников.</p>
+            </div>
+          </div>
         </section>
       </main>
     </div>
 
-    <script type="text/javascript" src="https://jvhww4caiisgkazn.private.blob.vercel-storage.com/C.A.T.E/script.js?vercel-blob-delegation=eyJzdG9yZUlkIjoic3RvcmVfSnZIV1c0Y2FpaXNnS2FabiIsIm93bmVySWQiOiJ0ZWFtX2o1V1ptVUx6c1VDTWtaSEFaVjI0bGlSZyIsInBhdGhuYW1lIjoiKiIsIm9wZXJhdGlvbnMiOlsiZ2V0IiwiaGVhZCJdLCJ2YWxpZFVudGlsIjoxNzkyNTMxOTg1NDEzLCJpYXQiOjE3OTI0ODg3OTM2NjB9.bzuBsTFs62k4_nS_fZy8WitOYFr_7SSvClMdHOiju9o&vercel-blob-signature=goqPLBbE55DHBpRnjCwNKnqXrOnRBUig-Cdp7OZz2iM"></script>
+    <script type="text/javascript" src="PRIVATE/script.js"></script>
   </body>
   <footer>
   </footer>

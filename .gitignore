@@ -1,1 +1,4 @@
 PRIVATE/
+node_modules/
+data/
+.vercel/
